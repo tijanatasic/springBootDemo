@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Employee Application</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	
+</head>
+
+<body>
+<div class=container>
+
+	<h3 style="margin-top: 20px;">Employee Application</h3>
+	
+	<a th:href="@{employeeForm}" class="btn btn-primary btn-sm mb3" style="margin-bottom: 20px; margin-top:10px;">Insert new Employee</a>
+
+	<table class="table table-bordered table-striped">
+	
+		<thead class="thead-dark">
+			<tr>
+				<td>First Name</td>
+				<td>Last Name</td>
+				<td>Email</td>
+				<td>Action</td>
+			</tr>
+		
+		</thead>
+		
+			<tr th:each="employee: ${employees}">
+			
+				<td th:text="${employee.firstName}"></td>
+				<td th:text="${employee.lastName}"></td>
+				<td th:text="${employee.email}"></td>
+				<td>
+					<a th:href="@{employeeFormUpdate(employeeId=${employee.id})}" class="btn btn-primary btn-sm mb3">Update</a>
+					<a th:href="@{employeeDelete(employeeId=${employee.id})}" class="btn btn-danger btn-sm mb3" 
+						onclick="if(!(confirm('Are you sure you want to delete employee?'))) return false;">Delete</a>
+				</td>
+			
+			</tr>
+		
+		<tbody>
+		
+		</tbody>
+	
+	</table>
+</div>
+</body>
+
+</html>
